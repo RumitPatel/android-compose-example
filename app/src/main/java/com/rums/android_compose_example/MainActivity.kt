@@ -52,8 +52,14 @@ fun DefaultPreview() {
     AndroidcomposeexampleTheme {
 //        Greeting("Android")
 //        SearchBar(Modifier.padding(8.dp))
-        ListElement(
+/*        ListElement(
             modifier = Modifier.padding(8.dp),
+            drawable = R.drawable.demo_image,
+            stringID = R.string.my_demo_text
+        )*/
+
+        FavouriteCollectionCard(
+            Modifier.padding(5.dp),
             drawable = R.drawable.demo_image,
             stringID = R.string.my_demo_text
         )
@@ -107,5 +113,35 @@ fun ListElement(
             modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 8.dp)
 
         )
+    }
+}
+
+@Composable
+fun FavouriteCollectionCard(
+    modifier: Modifier,
+    @DrawableRes drawable: Int,
+    @StringRes stringID: Int
+) {
+    Surface(
+        modifier = modifier,
+        shape = MaterialTheme.shapes.small
+    ) {
+        Row(
+            modifier = Modifier.width(192.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painterResource(id = drawable),
+                contentDescription = null,
+                modifier = Modifier.size(56.dp),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                stringResource(id = stringID),
+                style = MaterialTheme.typography.h3,
+                modifier = Modifier.padding(horizontal = 16.dp),
+                fontSize = 15.sp
+            )
+        }
     }
 }
