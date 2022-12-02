@@ -169,7 +169,14 @@ fun FavouriteCollectionsGrid(
     modifier: Modifier = Modifier,
     names: List<String> = List(10) { "$it" }
 ) {
-    LazyHorizontalGrid(rows = GridCells.Fixed(2)) {
+    LazyHorizontalGrid(
+        rows = GridCells.Fixed(2),
+        modifier = modifier.height(120.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+
+    ) {
         items(names) { item ->
             FavouriteCollectionCard(
                 modifier = modifier,
