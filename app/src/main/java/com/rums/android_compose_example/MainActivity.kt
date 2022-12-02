@@ -4,10 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -58,7 +60,8 @@ fun DefaultPreview() {
             stringID = R.string.my_demo_text
         )*/
 
-        MyHorizontalListRow()
+//        MyHorizontalListRow()
+        FavouriteCollectionsGrid()
     }
 }
 
@@ -116,7 +119,7 @@ fun MyHorizontalListElement(
 fun FavouriteCollectionCard(
     modifier: Modifier,
     @DrawableRes drawable: Int,
-    @StringRes stringID: Int
+    string: String
 ) {
     Surface(
         modifier = modifier,
@@ -133,7 +136,7 @@ fun FavouriteCollectionCard(
                 contentScale = ContentScale.Crop
             )
             Text(
-                stringResource(id = stringID),
+                text = string,
                 style = MaterialTheme.typography.h3,
                 modifier = Modifier.padding(horizontal = 16.dp),
                 fontSize = 15.sp
@@ -147,9 +150,36 @@ fun MyHorizontalListRow(
     modifier: Modifier = Modifier,
     names: List<String> = List(10) { "$it" }
 ) {
-    LazyRow(modifier) {
+    LazyRow(
+        modifier = modifier,
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
         items(names) { item ->
             MyHorizontalListElement(
+                drawable = R.drawable.demo_image,
+                string = ("Heer " + item)
+            )
+        }
+    }
+}
+
+@Composable
+fun FavouriteCollectionsGrid(
+    modifier: Modifier = Modifier,
+    names: List<String> = List(10) { "$it" }
+) {
+    LazyHorizontalGrid(
+        rows = GridCells.Fixed(2),
+        modifier = modifier.height(120.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+
+    ) {
+        items(names) { item ->
+            FavouriteCollectionCard(
+                modifier = modifier,
                 drawable = R.drawable.demo_image,
                 string = ("Heer " + item)
             )
