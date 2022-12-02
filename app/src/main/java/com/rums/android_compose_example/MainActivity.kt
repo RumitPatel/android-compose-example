@@ -147,7 +147,10 @@ fun MyHorizontalListRow(
     modifier: Modifier = Modifier,
     names: List<String> = List(10) { "$it" }
 ) {
-    LazyRow(modifier) {
+    LazyRow(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
         items(names) { item ->
             MyHorizontalListElement(
                 drawable = R.drawable.demo_image,
