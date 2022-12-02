@@ -8,6 +8,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -51,19 +52,13 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     AndroidcomposeexampleTheme {
-//        Greeting("Android")
-//        SearchBar(Modifier.padding(8.dp))
-/*        MyHorizontalListElement(
-            modifier = Modifier.padding(8.dp),
+/*        FavouriteCollectionCard(
+            Modifier.padding(5.dp),
             drawable = R.drawable.demo_image,
             stringID = R.string.my_demo_text
         )*/
 
-        FavouriteCollectionCard(
-            Modifier.padding(5.dp),
-            drawable = R.drawable.demo_image,
-            stringID = R.string.my_demo_text
-        )
+        MyHorizontalListRow()
     }
 }
 
@@ -149,9 +144,15 @@ fun FavouriteCollectionCard(
 
 @Composable
 fun MyHorizontalListRow(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    namess: List<String> = List(1000) { "$it" }
 ) {
     LazyRow(modifier) {
-
+        items(namess) { item ->
+            MyHorizontalListElement(
+                drawable = R.drawable.demo_image,
+                stringID = R.string.my_demo_text
+            )
+        }
     }
 }
