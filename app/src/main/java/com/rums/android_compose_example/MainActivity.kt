@@ -88,7 +88,7 @@ fun SearchBar(
 fun MyHorizontalListElement(
     modifier: Modifier = Modifier,
     @DrawableRes drawable: Int,
-    @StringRes stringID: Int
+    string: String
 ) {
     Column(
         modifier,
@@ -103,7 +103,7 @@ fun MyHorizontalListElement(
             contentScale = ContentScale.Crop
         )
         Text(
-            stringResource(id = stringID),
+            text = string,
             fontSize = 15.sp,
             style = MaterialTheme.typography.h3,
             modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 8.dp)
@@ -145,13 +145,13 @@ fun FavouriteCollectionCard(
 @Composable
 fun MyHorizontalListRow(
     modifier: Modifier = Modifier,
-    namess: List<String> = List(1000) { "$it" }
+    names: List<String> = List(10) { "$it" }
 ) {
     LazyRow(modifier) {
-        items(namess) { item ->
+        items(names) { item ->
             MyHorizontalListElement(
                 drawable = R.drawable.demo_image,
-                stringID = R.string.my_demo_text
+                string = ("Heer " + item)
             )
         }
     }
