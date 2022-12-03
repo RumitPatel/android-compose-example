@@ -25,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,19 +44,14 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
 //                    Greeting("Android")
-                    SearchBar()
+//                    SearchBar()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2, heightDp = 180)
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2, widthDp = 360, heightDp = 640)
 @Composable
 fun DefaultPreview() {
     AndroidcomposeexampleTheme {
@@ -75,7 +69,8 @@ fun DefaultPreview() {
         }*/
 
 //        HomeScreen()
-        SmoothBottomNavigation()
+//        SmoothBottomNavigation()
+        MainApp()
     }
 }
 
@@ -264,5 +259,14 @@ fun SmoothBottomNavigation(modifier: Modifier = Modifier) {
                 Text(text = stringResource(id = R.string.my_demo_text))
             }
         )
+    }
+}
+
+@Composable
+fun MainApp() {
+    Scaffold(
+        bottomBar = { SmoothBottomNavigation() }
+    ) { padding ->
+        HomeScreen()
     }
 }
