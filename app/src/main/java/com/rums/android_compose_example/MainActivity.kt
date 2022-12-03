@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -11,7 +12,9 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -26,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
+import java.util.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +54,7 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2, heightDp = 180)
 @Composable
 fun DefaultPreview() {
     AndroidcomposeexampleTheme {
@@ -61,7 +65,13 @@ fun DefaultPreview() {
         )*/
 
 //        MyHorizontalListRow()
-        FavouriteCollectionsGrid()
+//        FavouriteCollectionsGrid()
+
+/*        HomeSection(title = R.string.my_demo_text) {
+            MyHorizontalListRow()
+        }*/
+
+        HomeScreen()
     }
 }
 
@@ -184,5 +194,42 @@ fun FavouriteCollectionsGrid(
                 string = ("Heer " + item)
             )
         }
+    }
+}
+
+@Composable
+fun HomeSection(
+    @StringRes title: Int,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
+    Column(modifier = modifier) {
+        Text(
+            stringResource(id = title).uppercase(Locale.getDefault()),
+            style = MaterialTheme.typography.h2,
+            fontSize = 20.sp,
+            modifier = Modifier
+                .paddingFromBaseline(top = 40.dp, bottom = 8.dp)
+                .padding(horizontal = 16.dp)
+        )
+        content()
+
+    }
+}
+
+@Composable
+fun HomeScreen(
+    modifier: Modifier = Modifier
+) {
+    Column(modifier.verticalScroll(rememberScrollState())) {
+        Spacer(modifier = Modifier.height(16.dp))
+        SearchBar(Modifier.padding(horizontal = 8.dp))
+        HomeSection(title = R.string.my_demo_text) {
+            MyHorizontalListRow()
+        }
+        HomeSection(title = R.string.my_demo_text) {
+            FavouriteCollectionsGrid()
+        }
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
