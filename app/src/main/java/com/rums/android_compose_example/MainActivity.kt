@@ -17,12 +17,15 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -71,7 +74,8 @@ fun DefaultPreview() {
             MyHorizontalListRow()
         }*/
 
-        HomeScreen()
+//        HomeScreen()
+        SmoothBottomNavigation()
     }
 }
 
@@ -231,5 +235,34 @@ fun HomeScreen(
             FavouriteCollectionsGrid()
         }
         Spacer(modifier = Modifier.height(16.dp))
+    }
+}
+
+@Composable
+fun SmoothBottomNavigation(modifier: Modifier = Modifier) {
+    BottomNavigation(
+        modifier = modifier,
+        backgroundColor = MaterialTheme.colors.background
+    ) {
+        BottomNavigationItem(
+            selected = true,
+            onClick = { /*TODO*/ },
+            icon = {
+                Icon(Icons.Default.Home, contentDescription = null)
+            },
+            label = {
+                Text(text = stringResource(id = R.string.my_demo_text))
+            }
+        )
+        BottomNavigationItem(
+            selected = false,
+            onClick = { /*TODO*/ },
+            icon = {
+                Icon(Icons.Default.AccountCircle, contentDescription = null)
+            },
+            label = {
+                Text(text = stringResource(id = R.string.my_demo_text))
+            }
+        )
     }
 }
