@@ -1,4 +1,4 @@
-package com.rums.android_compose_example
+package com.rums.android_compose_example.demo_design
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -30,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rums.android_compose_example.R
 import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
 import java.util.*
 
