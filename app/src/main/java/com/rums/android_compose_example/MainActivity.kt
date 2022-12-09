@@ -38,13 +38,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AndroidcomposeexampleTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxWidth(),
                     color = MaterialTheme.colors.background
                 ) {
-//                    Greeting("Android")
-//                    SearchBar()
+                    MainApp()
                 }
             }
         }
@@ -55,21 +53,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     AndroidcomposeexampleTheme {
-/*        FavouriteCollectionCard(
-            Modifier.padding(5.dp),
-            drawable = R.drawable.demo_image,
-            stringID = R.string.my_demo_text
-        )*/
-
-//        MyHorizontalListRow()
-//        FavouriteCollectionsGrid()
-
-/*        HomeSection(title = R.string.my_demo_text) {
-            MyHorizontalListRow()
-        }*/
-
-//        HomeScreen()
-//        SmoothBottomNavigation()
         MainApp()
     }
 }
