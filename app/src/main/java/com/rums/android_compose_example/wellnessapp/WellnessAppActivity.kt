@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
 
@@ -16,17 +15,11 @@ class WellnessAppActivity : ComponentActivity() {
         setContent {
             AndroidcomposeexampleTheme {
                 Surface(
-                    modifier = Modifier.fillMaxWidth(),
-                    color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.background
                 ) {
                     WellnessScreen()
                 }
             }
         }
     }
-}
-
-@Composable
-fun WellnessScreen() {
-
 }
