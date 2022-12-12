@@ -15,7 +15,7 @@ fun WellnessTaskList(
         modifier = modifier
     ) {
         items(list) { task ->
-
+            WellnessTaskItem(taskName = task.label)
         }
     }
 }
