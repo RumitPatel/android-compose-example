@@ -8,25 +8,22 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun WellnessTaskItem(taskName: String, modifier: Modifier = Modifier){
-    /*var checkedState by remember { mutableStateOf(false) }
+fun WellnessTaskItem(taskName: String, modifier: Modifier = Modifier) {
+    var checkedState by remember { mutableStateOf(false) }
 
     WellnessTaskItem(
-        taskName =taskName,
+        taskName = taskName,
         checked = checkedState,
-        onCheckedChange = {newValue -> checkedState = newValue},
-        onClose = {},
+        onCheckedChange = { newValue -> checkedState = newValue },
+        onClose = {}, // We will implement it later
         modifier = modifier
-    )*/
+    )
 }
 
 @Composable
@@ -41,15 +38,13 @@ fun WellnessTaskItem(
         modifier = modifier, verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = taskName,
-            modifier = Modifier
+            text = taskName, modifier = Modifier
                 .weight(1f)
                 .padding(start = 16.dp)
         )
 
         Checkbox(
-            checked = checked,
-            onCheckedChange = onCheckedChange
+            checked = checked, onCheckedChange = onCheckedChange
         )
 
         IconButton(onClick = onClose) {
