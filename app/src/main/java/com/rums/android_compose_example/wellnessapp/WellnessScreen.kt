@@ -12,6 +12,7 @@ fun WellnessScreen(modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
         StatefulCounter()
 
+//        val list = rememberSaveable { getWellnessTasks().toMutableList() } // It was causing the error on removing element from list.
         val list = remember { getWellnessTasks().toMutableStateList() }
         WellnessTaskList(
             list = list,
