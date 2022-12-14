@@ -1,5 +1,6 @@
 package com.rums.android_compose_example.wellnessapp
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
@@ -12,6 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -26,13 +28,17 @@ fun StatefulCounter(modifier: Modifier = Modifier) {
             name = "Water",
             count = count,
             onIncrement = { count++ },
-            modifier = modifier.weight(weight = 1f)
+            modifier = modifier
+                .weight(weight = 1f)
+                .background(color = Color.LightGray)
         )
         StatelessCounter(
             name = "Juice",
             count = juiceCount,
             onIncrement = { juiceCount++ },
-            modifier = modifier.weight(1f)
+            modifier = modifier
+                .weight(1f)
+                .background(color = Color.Gray)
         )
     }
 }
