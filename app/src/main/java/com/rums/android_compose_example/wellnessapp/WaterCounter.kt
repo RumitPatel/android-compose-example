@@ -20,7 +20,7 @@ fun StatefulCounter(modifier: Modifier = Modifier) {
     var juiceCount by rememberSaveable { mutableStateOf(0) }
 // ------
     Row(
-        modifier = modifier.height(180.dp)
+        modifier = modifier.height(140.dp)
     ) {
         StatelessCounter(
             name = "Water",
