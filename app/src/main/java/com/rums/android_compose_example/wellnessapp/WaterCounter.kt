@@ -1,6 +1,8 @@
 package com.rums.android_compose_example.wellnessapp
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -17,21 +19,22 @@ fun StatefulCounter(modifier: Modifier = Modifier) {
     var count by rememberSaveable { mutableStateOf(0) }
     var juiceCount by rememberSaveable { mutableStateOf(0) }
 // ------
-    Column {
+    Row(
+        modifier = modifier.height(180.dp)
+    ) {
         StatelessCounter(
             name = "Water",
             count = count,
             onIncrement = { count++ },
-            modifier = modifier
+            modifier = modifier.weight(weight = 1f)
         )
         StatelessCounter(
             name = "Juice",
             count = juiceCount,
             onIncrement = { juiceCount++ },
-            modifier = modifier
+            modifier = modifier.weight(1f)
         )
     }
-
 }
 
 @Composable

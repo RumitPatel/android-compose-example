@@ -9,7 +9,6 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.rums.android_compose_example.demo_design.MainApp
 import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
 
 class WellnessAppActivity : ComponentActivity() {
@@ -27,7 +26,7 @@ class WellnessAppActivity : ComponentActivity() {
     }
 }
 
-@Preview()
+@Preview
 @Composable
 fun DefaultPreview() {
     AndroidcomposeexampleTheme {
