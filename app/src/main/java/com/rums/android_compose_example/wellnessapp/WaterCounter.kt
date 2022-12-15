@@ -50,12 +50,12 @@ private fun StatelessCounter(
     onIncrement: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier.padding(16.dp)) {
+    Column(modifier = modifier.padding(8.dp)) {
 
         if (count > 0) {
             Text(
                 text = "You've had $count glasses of $name",
-                modifier = modifier.padding(18.dp)
+                modifier = modifier.padding(8.dp)
             )
         }
 
