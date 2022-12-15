@@ -23,10 +23,10 @@ import androidx.compose.ui.unit.dp
 import com.rums.android_compose_example.R
 
 @Composable
-fun WellnessTaskItem(taskName: String, onClose: () -> Unit, modifier: Modifier = Modifier) {
+fun MyTaskListItem(taskName: String, onClose: () -> Unit, modifier: Modifier = Modifier) {
     var checkedState by rememberSaveable { mutableStateOf(false) }
 
-    WellnessTaskItem(
+    MyTaskListItem(
         taskName = taskName,
         checked = checkedState,
         onCheckedChange = { newValue -> checkedState = newValue },
@@ -36,7 +36,7 @@ fun WellnessTaskItem(taskName: String, onClose: () -> Unit, modifier: Modifier =
 }
 
 @Composable
-fun WellnessTaskItem(
+fun MyTaskListItem(
     taskName: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
