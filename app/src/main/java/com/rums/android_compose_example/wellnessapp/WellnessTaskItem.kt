@@ -1,7 +1,9 @@
 package com.rums.android_compose_example.wellnessapp
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Checkbox
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -15,7 +17,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.rums.android_compose_example.R
 
 @Composable
 fun WellnessTaskItem(taskName: String, onClose: () -> Unit, modifier: Modifier = Modifier) {
@@ -41,6 +46,14 @@ fun WellnessTaskItem(
     Row(
         modifier = modifier, verticalAlignment = Alignment.CenterVertically
     ) {
+        Image(
+            painterResource(id = R.drawable.demo_image),
+            contentDescription = null,
+            modifier = Modifier
+                .size(56.dp)
+                .padding(6.dp),
+            contentScale = ContentScale.Crop
+        )
         Text(
             modifier = Modifier
                 .weight(1f)
