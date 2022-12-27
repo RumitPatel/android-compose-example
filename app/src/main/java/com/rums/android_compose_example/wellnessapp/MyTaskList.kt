@@ -13,7 +13,7 @@ fun MyTaskList(
         modifier = modifier
     ) {
         items(items = list, key = { task -> task.id }) { task ->
-            MyTaskListItem(taskName = task.label, onClose = { onCloseTask(task) }, onItemLongClick = {})
+            MyTaskListItem(taskName = task.label, onClose = { onCloseTask(task) }, onItemLongClick = {onItemLongClick(task)})
         }
     }
 }

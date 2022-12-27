@@ -1,6 +1,8 @@
 package com.rums.android_compose_example.wellnessapp
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,7 +25,12 @@ import androidx.compose.ui.unit.dp
 import com.rums.android_compose_example.R
 
 @Composable
-fun MyTaskListItem(taskName: String, onClose: () -> Unit, onItemLongClick: () -> Unit, modifier: Modifier = Modifier) {
+fun MyTaskListItem(
+    taskName: String,
+    onClose: () -> Unit,
+    onItemLongClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     var checkedState by rememberSaveable { mutableStateOf(false) }
 
     MyTaskListItem(
@@ -36,6 +43,7 @@ fun MyTaskListItem(taskName: String, onClose: () -> Unit, onItemLongClick: () ->
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MyTaskListItem(
     taskName: String,
@@ -46,7 +54,11 @@ fun MyTaskListItem(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier, verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.combinedClickable(
+            onClick = {},
+            onLongClick = onItemLongClick,
+        ),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
             painterResource(id = R.drawable.demo_image),

@@ -1,6 +1,8 @@
 package com.rums.android_compose_example.wellnessapp
 
 import androidx.compose.runtime.toMutableStateList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class WellnessViewModel : ViewModel() {
@@ -13,7 +15,12 @@ class WellnessViewModel : ViewModel() {
     }
 
     fun onLongClick(item: WellnessTask) {
+        statusMessage.value = Event("Clicked on item ${item.label}")
     }
+
+    private val statusMessage = MutableLiveData<Event<String>>()
+    val message : LiveData<Event<String>>
+        get() = statusMessage
 }
 
 private fun getWellnessTasks() = List(30) { i -> WellnessTask(i, "Task # $i") }
