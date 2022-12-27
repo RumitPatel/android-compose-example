@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.rums.android_compose_example.R
 
 @Composable
-fun MyTaskListItem(taskName: String, onClose: () -> Unit, modifier: Modifier = Modifier) {
+fun MyTaskListItem(taskName: String, onClose: () -> Unit, onItemLongClick: () -> Unit, modifier: Modifier = Modifier) {
     var checkedState by rememberSaveable { mutableStateOf(false) }
 
     MyTaskListItem(
@@ -31,6 +31,7 @@ fun MyTaskListItem(taskName: String, onClose: () -> Unit, modifier: Modifier = M
         checked = checkedState,
         onCheckedChange = { newValue -> checkedState = newValue },
         onClose = onClose,
+        onItemLongClick = onItemLongClick,
         modifier = modifier
     )
 }
@@ -41,10 +42,11 @@ fun MyTaskListItem(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     onClose: () -> Unit,
+    onItemLongClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier, verticalAlignment = Alignment.CenterVertically
+        modifier = modifier, verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
             painterResource(id = R.drawable.demo_image),
@@ -58,7 +60,8 @@ fun MyTaskListItem(
             modifier = Modifier
                 .weight(1f)
                 .padding(start = 16.dp),
-            text = taskName
+            text = taskName,
+//            onClick = onItemLongClick
         )
         Checkbox(
             checked = checked,
