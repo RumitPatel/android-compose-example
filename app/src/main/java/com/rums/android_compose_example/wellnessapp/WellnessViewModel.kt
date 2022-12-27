@@ -11,6 +11,9 @@ class WellnessViewModel : ViewModel() {
     fun remove(item: WellnessTask) {
         _tasks.remove(item)
     }
+
+    fun onLongClick(item: WellnessTask) {
+    }
 }
 
 private fun getWellnessTasks() = List(30) { i -> WellnessTask(i, "Task # $i") }

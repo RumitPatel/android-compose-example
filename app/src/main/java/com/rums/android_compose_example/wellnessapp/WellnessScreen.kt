@@ -17,6 +17,9 @@ fun WellnessScreen(
             list = wellnessViewModel.tasks,
             onCloseTask = { task ->
                 wellnessViewModel.remove(task)
+            },
+            onItemLongClick = { task ->
+                wellnessViewModel.onLongClick(task)
             }
         )
     }
