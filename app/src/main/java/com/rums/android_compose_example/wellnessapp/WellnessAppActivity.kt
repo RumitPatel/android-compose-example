@@ -12,7 +12,6 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.Observer
 import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
 
 class WellnessAppActivity : ComponentActivity() {
@@ -38,11 +37,11 @@ class WellnessAppActivity : ComponentActivity() {
     }
 
     private fun initObserver() {
-        viewModel.message.observe(this, Observer {
+        viewModel.message.observe(this) { it ->
             it.getContentIfNotHandled()?.let {
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()
             }
-        })
+        }
     }
 }
 
