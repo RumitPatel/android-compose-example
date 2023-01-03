@@ -31,7 +31,5 @@ fun WellnessScreen(
                 wellnessViewModel.onLongClick(task)
             }
         )
-
-
     }
 }
