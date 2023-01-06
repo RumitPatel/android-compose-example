@@ -12,13 +12,17 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @Composable
 fun WellnessScreen(
     modifier: Modifier = Modifier,
-    wellnessViewModel: WellnessViewModel = viewModel()
+    wellnessViewModel: WellnessViewModel = viewModel(),
+    onNavigateButtonClicked: () -> Unit = {}
 ) {
     Column(modifier = modifier) {
         StatefulCounter()
         Button(
             modifier = Modifier.padding(8.dp),
-            onClick = { /*TODO*/ }
+            /*onClick = {
+                wellnessViewModel.navigateButtonClicked()
+            }*/
+            onClick = onNavigateButtonClicked
         ) {
             Text(text = "Navigate to test form")
         }

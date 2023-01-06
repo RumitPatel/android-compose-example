@@ -1,6 +1,7 @@
 package com.rums.android_compose_example.wellnessapp
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -12,6 +13,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.rums.android_compose_example.formapp.FormActivity
 import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
 
 class WellnessAppActivity : ComponentActivity() {
@@ -30,7 +32,9 @@ class WellnessAppActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.background
                 ) {
-                    WellnessScreen()
+                    WellnessScreen {
+                        navigateToFormActivity()
+                    }
                 }
             }
         }
@@ -42,6 +46,14 @@ class WellnessAppActivity : ComponentActivity() {
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun navigateToFormActivity() {
+        startActivity(
+            Intent(mContext, FormActivity::class.java)
+                .putExtra("", "")
+        )
+
     }
 }
 
