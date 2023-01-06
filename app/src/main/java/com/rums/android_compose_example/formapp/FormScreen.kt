@@ -1,7 +1,6 @@
 package com.rums.android_compose_example.formapp
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -20,17 +19,16 @@ fun FormScreen(
     modifier: Modifier = Modifier,
     formViewModel: FormViewModel = viewModel()
 ) {
-    var text by rememberSaveable { mutableStateOf("This is my textt") }
+    var text by rememberSaveable { mutableStateOf("") }
 
-    Column(
-        modifier = modifier.height(140.dp)
-    ) {
+    Column {
         TextField(
             value = text,
             onValueChange = {
                 text = it
             },
-            label = { Text("Label") }
+            placeholder = { Text("john.doe@abc.com") },
+            label = { Text("Enter Email") }
         )
         Button(
             modifier = Modifier.padding(8.dp),
