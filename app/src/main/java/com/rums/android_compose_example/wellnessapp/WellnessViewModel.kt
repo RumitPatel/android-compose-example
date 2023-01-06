@@ -19,7 +19,7 @@ class WellnessViewModel : ViewModel() {
     }
 
     private val statusMessage = MutableLiveData<Event<String>>()
-    val message : LiveData<Event<String>>
+    val message: LiveData<Event<String>>
         get() = statusMessage
 }
 
