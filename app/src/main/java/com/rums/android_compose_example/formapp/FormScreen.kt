@@ -118,6 +118,7 @@ private fun MyTextField(
         label = { Text(label) },
         onValueChange = onValueChange,
         singleLine = true,
+        keyboardOptions = keyboardOptions,
         visualTransformation = visualTransformation,
         trailingIcon = trailingIcon,
         modifier = Modifier
