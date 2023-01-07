@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -42,7 +43,9 @@ fun FormScreen(
             onValueChange = {
                 currentPassword = it
             },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
+            ),
             visualTransformation = if (currentPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 val image = if (currentPasswordVisible) Icons.Filled.Favorite
@@ -61,7 +64,9 @@ fun FormScreen(
             onValueChange = {
                 newPassword = it
             },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
+            ),
             visualTransformation = if (newPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 val image = if (newPasswordVisible) Icons.Filled.Favorite
@@ -80,7 +85,9 @@ fun FormScreen(
             onValueChange = {
                 confirmNewPassword = it
             },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
+            ),
             visualTransformation = if (confirmNewPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 val image = if (confirmNewPasswordVisible) Icons.Filled.Favorite
