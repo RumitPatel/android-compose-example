@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -48,8 +48,8 @@ fun FormScreen(
             ),
             visualTransformation = if (currentPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
-                val image = if (currentPasswordVisible) Icons.Filled.KeyboardArrowUp
-                else Icons.Filled.KeyboardArrowDown
+                val image = if (currentPasswordVisible) Icons.Filled.Visibility
+                else Icons.Filled.VisibilityOff
 
                 // Please provide localized description for accessibility services
                 val description = if (currentPasswordVisible) "Hide password" else "Show password"
@@ -69,8 +69,8 @@ fun FormScreen(
             ),
             visualTransformation = if (newPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
-                val image = if (newPasswordVisible) Icons.Filled.KeyboardArrowUp
-                else Icons.Filled.KeyboardArrowDown
+                val image = if (newPasswordVisible) Icons.Filled.Visibility
+                else Icons.Filled.VisibilityOff
 
                 // Please provide localized description for accessibility services
                 val description = if (newPasswordVisible) "Hide password" else "Show password"
@@ -90,8 +90,8 @@ fun FormScreen(
             ),
             visualTransformation = if (confirmNewPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
-                val image = if (confirmNewPasswordVisible) Icons.Filled.KeyboardArrowUp
-                else Icons.Filled.KeyboardArrowDown
+                val image = if (confirmNewPasswordVisible) Icons.Filled.Visibility
+                else Icons.Filled.VisibilityOff
 
                 // Please provide localized description for accessibility services
                 val description =
