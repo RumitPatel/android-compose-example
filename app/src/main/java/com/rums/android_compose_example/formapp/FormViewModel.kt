@@ -23,7 +23,6 @@ class FormViewModel : ViewModel() {
         } else {
             statusMessage.value = Event("Going to reset the password")
         }
-
     }
 
     val message: LiveData<Event<String>>
