@@ -14,11 +14,12 @@ class WellnessViewModel : ViewModel() {
         _tasks.remove(item)
     }
 
+    private val statusMessage = MutableLiveData<Event<String>>()
+
     fun onLongClick(item: WellnessTask) {
         statusMessage.value = Event("Clicked on item ${item.label}")
     }
 
-    private val statusMessage = MutableLiveData<Event<String>>()
     val message: LiveData<Event<String>>
         get() = statusMessage
 }

@@ -23,7 +23,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun FormScreen(
-    modifier: Modifier = Modifier, formViewModel: FormViewModel = viewModel()
+    modifier: Modifier = Modifier,
+    formViewModel: FormViewModel = viewModel(),
+    onResetPasswordClicked: () -> Unit = {}
 ) {
     var currentPassword by rememberSaveable { mutableStateOf("") }
     var currentPasswordVisible by rememberSaveable { mutableStateOf(false) }
@@ -102,7 +104,7 @@ fun FormScreen(
                 }
             })
         Button(modifier = Modifier.padding(8.dp), onClick = {
-            formViewModel.testMethod()
+            formViewModel.onResetPasswordClicked()
         }) {
             Text(text = "Reset password")
         }
