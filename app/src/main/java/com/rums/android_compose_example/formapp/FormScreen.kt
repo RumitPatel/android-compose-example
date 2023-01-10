@@ -104,7 +104,11 @@ fun FormScreen(
                 }
             })
         Button(modifier = Modifier.padding(8.dp), onClick = {
-            formViewModel.onResetPasswordClicked()
+            formViewModel.onResetPasswordClicked(
+                currentPassword,
+                newPassword,
+                confirmNewPassword
+            )
         }) {
             Text(text = "Reset password")
         }
