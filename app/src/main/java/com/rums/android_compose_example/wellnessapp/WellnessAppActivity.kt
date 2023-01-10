@@ -32,9 +32,11 @@ class WellnessAppActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.background
                 ) {
-                    WellnessScreen {
-                        navigateToFormActivity()
-                    }
+                    WellnessScreen(
+                        onNavigateButtonClicked = {
+                            navigateToFormActivity()
+                        }
+                    )
                 }
             }
         }
