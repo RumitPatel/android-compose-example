@@ -30,9 +30,7 @@ class FormActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.background
                 ) {
-                    FormScreen(onResetPasswordClicked = {
-
-                    })
+                    FormScreen()
                 }
             }
         }

@@ -22,11 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun FormScreen(
-    modifier: Modifier = Modifier,
-    formViewModel: FormViewModel = viewModel(),
-    onResetPasswordClicked: () -> Unit = {}
-) {
+fun FormScreen() {
+    val formViewModel: FormViewModel = viewModel()
+
     var currentPassword by rememberSaveable { mutableStateOf("") }
     var currentPasswordVisible by rememberSaveable { mutableStateOf(false) }
 
