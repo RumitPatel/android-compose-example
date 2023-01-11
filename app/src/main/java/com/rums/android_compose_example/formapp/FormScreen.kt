@@ -24,8 +24,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @Composable
 fun FormScreen(
     modifier: Modifier = Modifier,
-    formViewModel: FormViewModel = viewModel(),
-    onResetPasswordClicked: () -> Unit = {}
+    formViewModel: FormViewModel = viewModel()
 ) {
     var currentPassword by rememberSaveable { mutableStateOf("") }
     var currentPasswordVisible by rememberSaveable { mutableStateOf(false) }
