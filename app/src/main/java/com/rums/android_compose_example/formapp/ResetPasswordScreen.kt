@@ -34,12 +34,15 @@ fun ResetPasswordScreen(
 ) {
     var currentPassword by rememberSaveable { mutableStateOf("") }
     var currentPasswordVisible by rememberSaveable { mutableStateOf(false) }
+    var isErrorCurrentPassword by rememberSaveable { mutableStateOf(false) }
 
     var newPassword by rememberSaveable { mutableStateOf("") }
     var newPasswordVisible by rememberSaveable { mutableStateOf(false) }
+    var isErrorNewPassword by rememberSaveable { mutableStateOf(false) }
 
     var confirmNewPassword by rememberSaveable { mutableStateOf("") }
     var confirmNewPasswordVisible by rememberSaveable { mutableStateOf(false) }
+    var isErrorConfirmNewPassword by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(topBar = {
         TopAppBar(title = {
@@ -57,10 +60,15 @@ fun ResetPasswordScreen(
             modifier = Modifier.padding(padding)
         ) {
             MyTextField(value = currentPassword,
+                isError = isErrorCurrentPassword,
+                errorMessage = stringResource(R.string.enter_current_password),
                 valueVisibility = currentPasswordVisible,
                 placeholder = stringResource(R.string.current_password),
                 label = stringResource(R.string.current_password),
-                onValueChange = { currentPassword = it },
+                onValueChange = {
+                    currentPassword = it
+                    isErrorCurrentPassword = false
+                },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
                 ),
@@ -73,11 +81,17 @@ fun ResetPasswordScreen(
                     }
                 })
 
+
             MyTextField(value = newPassword,
+                isError = isErrorNewPassword,
+                errorMessage = stringResource(R.string.enter_new_password),
                 valueVisibility = newPasswordVisible,
                 placeholder = stringResource(R.string.new_password),
                 label = stringResource(R.string.new_password),
-                onValueChange = { newPassword = it },
+                onValueChange = {
+                    newPassword = it
+                    isErrorNewPassword = false
+                },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
                 ),
@@ -91,10 +105,15 @@ fun ResetPasswordScreen(
                 })
 
             MyTextField(value = confirmNewPassword,
+                isError = isErrorConfirmNewPassword,
+                errorMessage = stringResource(R.string.enter_valid_confirm_password),
                 valueVisibility = confirmNewPasswordVisible,
                 placeholder = stringResource(R.string.confirm_password),
                 label = stringResource(R.string.confirm_password),
-                onValueChange = { confirmNewPassword = it },
+                onValueChange = {
+                    confirmNewPassword = it
+                    isErrorConfirmNewPassword = false
+                },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
                 ),
@@ -110,7 +129,17 @@ fun ResetPasswordScreen(
                 })
 
             Button(modifier = Modifier.padding(8.dp), onClick = {
-                onResetButtonClicked(currentPassword, newPassword, confirmNewPassword)
+
+                if (currentPassword.isEmpty()) {
+                    isErrorCurrentPassword = true
+                } else if (newPassword.isEmpty()) {
+                    isErrorNewPassword = true
+                } else if (confirmNewPassword.isEmpty()) {
+                    isErrorConfirmNewPassword = true
+                } else {
+                    onResetButtonClicked(currentPassword, newPassword, confirmNewPassword)
+                }
+
             }) {
                 Text(text = stringResource(R.string.reset_password))
             }
@@ -122,6 +151,8 @@ fun ResetPasswordScreen(
 private fun MyTextField(
     value: String,
     valueVisibility: Boolean,
+    isError: Boolean,
+    errorMessage: String,
     placeholder: String,
     label: String,
     onValueChange: (String) -> Unit,
@@ -147,6 +178,14 @@ private fun MyTextField(
             unfocusedIndicatorColor = Color.Transparent //hide the bottom indicator line
         )
     )
+    if (isError) {
+        Text(
+            text = errorMessage,
+            color = MaterialTheme.colors.error,
+            style = MaterialTheme.typography.caption,
+            modifier = Modifier.padding(start = 16.dp)
+        )
+    }
 }
 
 fun getPasswordToggleIcon(isVisible: Boolean): ImageVector {

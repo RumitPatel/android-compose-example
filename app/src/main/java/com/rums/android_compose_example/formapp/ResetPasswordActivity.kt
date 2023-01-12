@@ -2,7 +2,6 @@ package com.rums.android_compose_example.formapp
 
 import android.content.Context
 import android.os.Bundle
-import android.text.TextUtils
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -39,19 +38,10 @@ class ResetPasswordActivity : ComponentActivity() {
     private fun resetPassword(
         currentPassword: String?, newPassword: String?, confirmNewPassword: String?
     ) {
-        if (currentPassword == null || TextUtils.isEmpty(currentPassword)) {
-            toast("Please enter current password")
-        } else if (newPassword == null || TextUtils.isEmpty(newPassword)) {
-            toast("Please enter new password")
-        } else if (confirmNewPassword == null || TextUtils.isEmpty(
-                confirmNewPassword
-            )
-        ) {
-            toast("Please enter confirm new password")
-        } else if (newPassword != confirmNewPassword) {
+        if (newPassword != confirmNewPassword) {
             toast("New password and confirm password not match")
         } else {
-            toast("Going to reset the password")
+            toast("Going to reset the password with \ncurrentPassword = $currentPassword\nnewPassword = $newPassword\nconfirmNewPassword = $confirmNewPassword")
         }
     }
 }
