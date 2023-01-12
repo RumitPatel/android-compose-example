@@ -56,13 +56,11 @@ fun ResetPasswordScreen(
         Column(
             modifier = Modifier.padding(padding)
         ) {
-            MyTextField(currentPassword,
-                currentPasswordVisible,
+            MyTextField(value = currentPassword,
+                valueVisibility = currentPasswordVisible,
                 placeholder = stringResource(R.string.current_password),
                 label = stringResource(R.string.current_password),
-                onValueChange = {
-                    currentPassword = it
-                },
+                onValueChange = { currentPassword = it },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
                 ),
@@ -75,13 +73,11 @@ fun ResetPasswordScreen(
                     }
                 })
 
-            MyTextField(newPassword,
-                newPasswordVisible,
+            MyTextField(value = newPassword,
+                valueVisibility = newPasswordVisible,
                 placeholder = stringResource(R.string.new_password),
                 label = stringResource(R.string.new_password),
-                onValueChange = {
-                    newPassword = it
-                },
+                onValueChange = { newPassword = it },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
                 ),
@@ -94,13 +90,11 @@ fun ResetPasswordScreen(
                     }
                 })
 
-            MyTextField(confirmNewPassword,
-                confirmNewPasswordVisible,
+            MyTextField(value = confirmNewPassword,
+                valueVisibility = confirmNewPasswordVisible,
                 placeholder = stringResource(R.string.confirm_password),
                 label = stringResource(R.string.confirm_password),
-                onValueChange = {
-                    confirmNewPassword = it
-                },
+                onValueChange = { confirmNewPassword = it },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
                 ),
@@ -124,15 +118,6 @@ fun ResetPasswordScreen(
     })
 }
 
-fun getPasswordToggleIcon(isVisible: Boolean): ImageVector {
-    return if (isVisible) Icons.Filled.Visibility
-    else Icons.Filled.VisibilityOff
-}
-
-fun getPasswordToggleDescription(isVisible: Boolean): String {
-    return if (isVisible) "Hide password" else "Show password"
-}
-
 @Composable
 private fun MyTextField(
     value: String,
@@ -143,7 +128,8 @@ private fun MyTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     trailingIcon: @Composable (() -> Unit)? = null,
 ) {
-    TextField(value = value,
+    TextField(
+        value = value,
         placeholder = { Text(placeholder) },
         label = { Text(label) },
         onValueChange = onValueChange,
@@ -161,4 +147,13 @@ private fun MyTextField(
             unfocusedIndicatorColor = Color.Transparent //hide the bottom indicator line
         )
     )
+}
+
+fun getPasswordToggleIcon(isVisible: Boolean): ImageVector {
+    return if (isVisible) Icons.Filled.Visibility
+    else Icons.Filled.VisibilityOff
+}
+
+fun getPasswordToggleDescription(isVisible: Boolean): String {
+    return if (isVisible) "Hide password" else "Show password"
 }
