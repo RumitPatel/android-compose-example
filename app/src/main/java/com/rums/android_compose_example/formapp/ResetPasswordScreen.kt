@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -37,6 +38,7 @@ fun ResetPasswordScreen(
         modifier = Modifier.padding(4.dp)
     ) {
         MyTextField(currentPassword,
+            currentPasswordVisible,
             placeholder = "Type current password here",
             label = "Enter current password",
             onValueChange = {
@@ -45,13 +47,9 @@ fun ResetPasswordScreen(
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
             ),
-            visualTransformation = if (currentPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
-                val image = if (currentPasswordVisible) Icons.Filled.Visibility
-                else Icons.Filled.VisibilityOff
-
-                // Please provide localized description for accessibility services
-                val description = if (currentPasswordVisible) "Hide password" else "Show password"
+                val image = getPasswordToggleIcon(currentPasswordVisible)
+                val description = getPasswordToggleDescription(confirmNewPasswordVisible)
 
                 IconButton(onClick = { currentPasswordVisible = !currentPasswordVisible }) {
                     Icon(imageVector = image, description)
@@ -59,6 +57,7 @@ fun ResetPasswordScreen(
             })
 
         MyTextField(newPassword,
+            newPasswordVisible,
             placeholder = "Type new password here",
             label = "Enter new password",
             onValueChange = {
@@ -67,13 +66,9 @@ fun ResetPasswordScreen(
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
             ),
-            visualTransformation = if (newPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
-                val image = if (newPasswordVisible) Icons.Filled.Visibility
-                else Icons.Filled.VisibilityOff
-
-                // Please provide localized description for accessibility services
-                val description = if (newPasswordVisible) "Hide password" else "Show password"
+                val image = getPasswordToggleIcon(newPasswordVisible)
+                val description = getPasswordToggleDescription(confirmNewPasswordVisible)
 
                 IconButton(onClick = { newPasswordVisible = !newPasswordVisible }) {
                     Icon(imageVector = image, description)
@@ -81,6 +76,7 @@ fun ResetPasswordScreen(
             })
 
         MyTextField(confirmNewPassword,
+            confirmNewPasswordVisible,
             placeholder = "Type confirm new password here",
             label = "Enter confirm new password",
             onValueChange = {
@@ -89,14 +85,9 @@ fun ResetPasswordScreen(
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
             ),
-            visualTransformation = if (confirmNewPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
-                val image = if (confirmNewPasswordVisible) Icons.Filled.Visibility
-                else Icons.Filled.VisibilityOff
-
-                // Please provide localized description for accessibility services
-                val description =
-                    if (confirmNewPasswordVisible) "Hide password" else "Show password"
+                val image = getPasswordToggleIcon(confirmNewPasswordVisible)
+                val description = getPasswordToggleDescription(confirmNewPasswordVisible)
 
                 IconButton(onClick = { confirmNewPasswordVisible = !confirmNewPasswordVisible }) {
                     Icon(imageVector = image, description)
@@ -111,14 +102,23 @@ fun ResetPasswordScreen(
     }
 }
 
+fun getPasswordToggleIcon(isVisible: Boolean): ImageVector {
+    return if (isVisible) Icons.Filled.Visibility
+    else Icons.Filled.VisibilityOff
+}
+
+fun getPasswordToggleDescription(isVisible: Boolean): String {
+    return if (isVisible) "Hide password" else "Show password"
+}
+
 @Composable
 private fun MyTextField(
     value: String,
+    valueVisibility: Boolean,
     placeholder: String,
     label: String,
     onValueChange: (String) -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
     trailingIcon: @Composable (() -> Unit)? = null,
 ) {
     TextField(
@@ -128,7 +128,7 @@ private fun MyTextField(
         onValueChange = onValueChange,
         singleLine = true,
         keyboardOptions = keyboardOptions,
-        visualTransformation = visualTransformation,
+        visualTransformation = if (valueVisibility) VisualTransformation.None else PasswordVisualTransformation(),
         trailingIcon = trailingIcon,
         modifier = Modifier
             .fillMaxWidth()
