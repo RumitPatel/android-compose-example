@@ -31,12 +31,14 @@ class FormActivity : ComponentActivity() {
                         if (currentPassword == null || TextUtils.isEmpty(currentPassword)) {
                             toast("Please enter current password")
                         } else if (newPassword == null || TextUtils.isEmpty(newPassword)) {
-                            toast("Please enter current new password")
+                            toast("Please enter new password")
                         } else if (confirmNewPassword == null || TextUtils.isEmpty(
                                 confirmNewPassword
                             )
                         ) {
                             toast("Please enter confirm new password")
+                        } else if (newPassword != confirmNewPassword) {
+                            toast("New password and confirm password not match")
                         } else {
                             toast("Going to reset the password")
                         }
