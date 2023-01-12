@@ -19,12 +19,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun FormScreen() {
-    val formViewModel: FormViewModel = viewModel()
-
+fun FormScreen(
+    onResetButtonClicked: (currentPassword: String?, newPassword: String?, confirmNewPassword: String?) -> Unit = { _: String?, _: String?, _: String? -> }
+) {
     var currentPassword by rememberSaveable { mutableStateOf("") }
     var currentPasswordVisible by rememberSaveable { mutableStateOf(false) }
 
@@ -102,11 +101,7 @@ fun FormScreen() {
                 }
             })
         Button(modifier = Modifier.padding(8.dp), onClick = {
-            formViewModel.onResetPasswordClicked(
-                currentPassword,
-                newPassword,
-                confirmNewPassword
-            )
+            onResetButtonClicked(currentPassword, newPassword, confirmNewPassword)
         }) {
             Text(text = "Reset password")
         }
