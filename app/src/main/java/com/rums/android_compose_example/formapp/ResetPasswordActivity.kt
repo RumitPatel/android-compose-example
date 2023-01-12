@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
 import com.rums.android_compose_example.utils.toast
 
-class FormActivity : ComponentActivity() {
+class ResetPasswordActivity : ComponentActivity() {
 
     private lateinit var mContext: Context
 
@@ -27,7 +27,7 @@ class FormActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.background
                 ) {
-                    FormScreen(onResetButtonClicked = { currentPassword, newPassword, confirmNewPassword ->
+                    ResetPasswordScreen(onResetButtonClicked = { currentPassword, newPassword, confirmNewPassword ->
                         resetPassword(currentPassword, newPassword, confirmNewPassword)
                     })
                 }
@@ -59,6 +59,6 @@ class FormActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     AndroidcomposeexampleTheme {
-        FormScreen()
+        ResetPasswordScreen()
     }
 }

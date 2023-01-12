@@ -21,7 +21,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun FormScreen(
+fun ResetPasswordScreen(
     onResetButtonClicked: (currentPassword: String?, newPassword: String?, confirmNewPassword: String?) -> Unit = { _: String?, _: String?, _: String? -> }
 ) {
     var currentPassword by rememberSaveable { mutableStateOf("") }
@@ -57,6 +57,7 @@ fun FormScreen(
                     Icon(imageVector = image, description)
                 }
             })
+
         MyTextField(newPassword,
             placeholder = "Type new password here",
             label = "Enter new password",
@@ -78,6 +79,7 @@ fun FormScreen(
                     Icon(imageVector = image, description)
                 }
             })
+
         MyTextField(confirmNewPassword,
             placeholder = "Type confirm new password here",
             label = "Enter confirm new password",
@@ -100,6 +102,7 @@ fun FormScreen(
                     Icon(imageVector = image, description)
                 }
             })
+
         Button(modifier = Modifier.padding(8.dp), onClick = {
             onResetButtonClicked(currentPassword, newPassword, confirmNewPassword)
         }) {

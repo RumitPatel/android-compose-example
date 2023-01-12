@@ -13,7 +13,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.rums.android_compose_example.formapp.FormActivity
+import com.rums.android_compose_example.formapp.ResetPasswordActivity
 import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
 
 class WellnessAppActivity : ComponentActivity() {
@@ -52,7 +52,7 @@ class WellnessAppActivity : ComponentActivity() {
 
     private fun navigateToFormActivity() {
         startActivity(
-            Intent(mContext, FormActivity::class.java)
+            Intent(mContext, ResetPasswordActivity::class.java)
                 .putExtra("", "")
         )
 
