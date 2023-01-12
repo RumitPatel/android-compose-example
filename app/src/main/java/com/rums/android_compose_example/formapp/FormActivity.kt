@@ -28,23 +28,29 @@ class FormActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.background
                 ) {
                     FormScreen(onResetButtonClicked = { currentPassword, newPassword, confirmNewPassword ->
-                        if (currentPassword == null || TextUtils.isEmpty(currentPassword)) {
-                            toast("Please enter current password")
-                        } else if (newPassword == null || TextUtils.isEmpty(newPassword)) {
-                            toast("Please enter new password")
-                        } else if (confirmNewPassword == null || TextUtils.isEmpty(
-                                confirmNewPassword
-                            )
-                        ) {
-                            toast("Please enter confirm new password")
-                        } else if (newPassword != confirmNewPassword) {
-                            toast("New password and confirm password not match")
-                        } else {
-                            toast("Going to reset the password")
-                        }
+                        resetPassword(currentPassword, newPassword, confirmNewPassword)
                     })
                 }
             }
+        }
+    }
+
+    private fun resetPassword(
+        currentPassword: String?, newPassword: String?, confirmNewPassword: String?
+    ) {
+        if (currentPassword == null || TextUtils.isEmpty(currentPassword)) {
+            toast("Please enter current password")
+        } else if (newPassword == null || TextUtils.isEmpty(newPassword)) {
+            toast("Please enter new password")
+        } else if (confirmNewPassword == null || TextUtils.isEmpty(
+                confirmNewPassword
+            )
+        ) {
+            toast("Please enter confirm new password")
+        } else if (newPassword != confirmNewPassword) {
+            toast("New password and confirm password not match")
+        } else {
+            toast("Going to reset the password")
         }
     }
 }
