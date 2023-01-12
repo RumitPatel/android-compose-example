@@ -40,8 +40,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidcomposeexampleTheme {
                 Surface(
-                    modifier = Modifier.fillMaxWidth(),
-                    color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.background
                 ) {
                     MainApp()
                 }
@@ -62,33 +61,24 @@ fun DefaultPreview() {
 fun SearchBar(
     modifier: Modifier = Modifier
 ) {
-    TextField(
-        value = "",
-        onValueChange = {},
-        leadingIcon = {
-            Icon(Icons.Default.Search, contentDescription = null)
-        },
-        placeholder = {
-            Text(stringResource(id = R.string.app_name))
-        },
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = MaterialTheme.colors.surface
-        ),
-        modifier = modifier
-            .heightIn(min = 56.dp)
-            .fillMaxWidth()
+    TextField(value = "", onValueChange = {}, leadingIcon = {
+        Icon(Icons.Default.Search, contentDescription = null)
+    }, placeholder = {
+        Text(stringResource(id = R.string.app_name))
+    }, colors = TextFieldDefaults.textFieldColors(
+        backgroundColor = MaterialTheme.colors.surface
+    ), modifier = modifier
+        .heightIn(min = 56.dp)
+        .fillMaxWidth()
     )
 }
 
 @Composable
 fun MyHorizontalListElement(
-    modifier: Modifier = Modifier,
-    @DrawableRes drawable: Int,
-    string: String
+    modifier: Modifier = Modifier, @DrawableRes drawable: Int, string: String
 ) {
     Column(
-        modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier, horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
             painterResource(id = drawable),
@@ -110,17 +100,13 @@ fun MyHorizontalListElement(
 
 @Composable
 fun FavouriteCollectionCard(
-    modifier: Modifier,
-    @DrawableRes drawable: Int,
-    string: String
+    modifier: Modifier, @DrawableRes drawable: Int, string: String
 ) {
     Surface(
-        modifier = modifier,
-        shape = MaterialTheme.shapes.small
+        modifier = modifier, shape = MaterialTheme.shapes.small
     ) {
         Row(
-            modifier = Modifier.width(192.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.width(192.dp), verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 painterResource(id = drawable),
@@ -140,8 +126,7 @@ fun FavouriteCollectionCard(
 
 @Composable
 fun MyHorizontalListRow(
-    modifier: Modifier = Modifier,
-    names: List<String> = List(10) { "$it" }
+    modifier: Modifier = Modifier, names: List<String> = List(10) { "$it" }
 ) {
     LazyRow(
         modifier = modifier,
@@ -150,8 +135,7 @@ fun MyHorizontalListRow(
     ) {
         items(names) { item ->
             MyHorizontalListElement(
-                drawable = R.drawable.demo_image,
-                string = ("Heer " + item)
+                drawable = R.drawable.demo_image, string = ("Heer " + item)
             )
         }
     }
@@ -159,8 +143,7 @@ fun MyHorizontalListRow(
 
 @Composable
 fun FavouriteCollectionsGrid(
-    modifier: Modifier = Modifier,
-    names: List<String> = List(10) { "$it" }
+    modifier: Modifier = Modifier, names: List<String> = List(10) { "$it" }
 ) {
     LazyHorizontalGrid(
         rows = GridCells.Fixed(2),
@@ -172,9 +155,7 @@ fun FavouriteCollectionsGrid(
     ) {
         items(names) { item ->
             FavouriteCollectionCard(
-                modifier = modifier,
-                drawable = R.drawable.demo_image,
-                string = ("Heer " + item)
+                modifier = modifier, drawable = R.drawable.demo_image, string = ("Heer " + item)
             )
         }
     }
@@ -182,9 +163,7 @@ fun FavouriteCollectionsGrid(
 
 @Composable
 fun HomeSection(
-    @StringRes title: Int,
-    modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+    @StringRes title: Int, modifier: Modifier = Modifier, content: @Composable () -> Unit
 ) {
     Column(modifier = modifier) {
         Text(
@@ -220,37 +199,26 @@ fun HomeScreen(
 @Composable
 fun SmoothBottomNavigation(modifier: Modifier = Modifier) {
     BottomNavigation(
-        modifier = modifier,
-        backgroundColor = MaterialTheme.colors.background
+        modifier = modifier, backgroundColor = MaterialTheme.colors.background
     ) {
-        BottomNavigationItem(
-            selected = true,
-            onClick = { /*TODO*/ },
-            icon = {
-                Icon(Icons.Default.Home, contentDescription = null)
-            },
-            label = {
-                Text(text = stringResource(id = R.string.my_demo_text))
-            }
-        )
-        BottomNavigationItem(
-            selected = false,
-            onClick = { /*TODO*/ },
-            icon = {
-                Icon(Icons.Default.AccountCircle, contentDescription = null)
-            },
-            label = {
-                Text(text = stringResource(id = R.string.my_demo_text))
-            }
-        )
+        BottomNavigationItem(selected = true, onClick = { /*TODO*/ }, icon = {
+            Icon(Icons.Default.Home, contentDescription = null)
+        }, label = {
+            Text(text = stringResource(id = R.string.my_demo_text))
+        })
+        BottomNavigationItem(selected = false, onClick = { /*TODO*/ }, icon = {
+            Icon(Icons.Default.AccountCircle, contentDescription = null)
+        }, label = {
+            Text(text = stringResource(id = R.string.my_demo_text))
+        })
     }
 }
 
 @Composable
 fun MainApp() {
-    Scaffold(
-        bottomBar = { SmoothBottomNavigation() }
-    ) { padding ->
-        HomeScreen()
+    Scaffold(bottomBar = { SmoothBottomNavigation() }) { padding ->
+        HomeScreen(
+            modifier = Modifier.padding(padding)
+        )
     }
 }
