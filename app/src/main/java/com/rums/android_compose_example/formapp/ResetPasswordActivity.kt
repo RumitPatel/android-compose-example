@@ -27,9 +27,10 @@ class ResetPasswordActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.background
                 ) {
-                    ResetPasswordScreen(onResetButtonClicked = { currentPassword, newPassword, confirmNewPassword ->
-                        resetPassword(currentPassword, newPassword, confirmNewPassword)
-                    })
+                    ResetPasswordScreen(onBackArrowPressed = { super.onBackPressed() },
+                        onResetButtonClicked = { currentPassword, newPassword, confirmNewPassword ->
+                            resetPassword(currentPassword, newPassword, confirmNewPassword)
+                        })
                 }
             }
         }
