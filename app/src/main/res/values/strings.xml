@@ -2,4 +2,9 @@
     <string name="app_name">android-compose-example</string>
 
     <string name="my_demo_text">Hello Heeru</string>
+
+    <string name="reset_password">Reset Password</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>

@@ -3,6 +3,7 @@ package com.rums.android_compose_example.formapp
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -17,12 +18,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.toColorInt
+import com.rums.android_compose_example.R
 
 @Composable
 fun ResetPasswordScreen(
@@ -40,15 +43,13 @@ fun ResetPasswordScreen(
 
     Scaffold(topBar = {
         TopAppBar(title = {
-            Text(text = "Reset Password")
-        },
-            navigationIcon = {
-                IconButton(onClick = onBackArrowPressed) {
-                    Icon(Icons.Filled.ArrowBack, "")
-                }
-            },
-            backgroundColor = Color("#0000FF".toColorInt()),
-            contentColor = Color.White,
+            Text(text = stringResource(R.string.reset_password))
+        }, navigationIcon = {
+            IconButton(onClick = onBackArrowPressed) {
+                Icon(Icons.Filled.ArrowBack, "")
+            }
+        }, backgroundColor = Color.White,
+//            contentColor = Color.White,
             elevation = 12.dp
         )
     }, content = { padding ->
@@ -57,8 +58,8 @@ fun ResetPasswordScreen(
         ) {
             MyTextField(currentPassword,
                 currentPasswordVisible,
-                placeholder = "Type current password here",
-                label = "Enter current password",
+                placeholder = stringResource(R.string.current_password),
+                label = stringResource(R.string.current_password),
                 onValueChange = {
                     currentPassword = it
                 },
@@ -76,8 +77,8 @@ fun ResetPasswordScreen(
 
             MyTextField(newPassword,
                 newPasswordVisible,
-                placeholder = "Type new password here",
-                label = "Enter new password",
+                placeholder = stringResource(R.string.new_password),
+                label = stringResource(R.string.new_password),
                 onValueChange = {
                     newPassword = it
                 },
@@ -95,8 +96,8 @@ fun ResetPasswordScreen(
 
             MyTextField(confirmNewPassword,
                 confirmNewPasswordVisible,
-                placeholder = "Type confirm new password here",
-                label = "Enter confirm new password",
+                placeholder = stringResource(R.string.confirm_password),
+                label = stringResource(R.string.confirm_password),
                 onValueChange = {
                     confirmNewPassword = it
                 },
@@ -117,12 +118,10 @@ fun ResetPasswordScreen(
             Button(modifier = Modifier.padding(8.dp), onClick = {
                 onResetButtonClicked(currentPassword, newPassword, confirmNewPassword)
             }) {
-                Text(text = "Reset password")
+                Text(text = stringResource(R.string.reset_password))
             }
         }
     })
-
-
 }
 
 fun getPasswordToggleIcon(isVisible: Boolean): ImageVector {
@@ -144,8 +143,7 @@ private fun MyTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     trailingIcon: @Composable (() -> Unit)? = null,
 ) {
-    TextField(
-        value = value,
+    TextField(value = value,
         placeholder = { Text(placeholder) },
         label = { Text(label) },
         onValueChange = onValueChange,
@@ -156,5 +154,11 @@ private fun MyTextField(
         modifier = Modifier
             .fillMaxWidth()
             .padding(4.dp),
+        shape = RoundedCornerShape(10.dp),
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = colorResource(R.color.colorGrayLightAlphaAlpha),
+            focusedIndicatorColor = Color.Transparent, //hide the bottom indicator line
+            unfocusedIndicatorColor = Color.Transparent //hide the bottom indicator line
+        )
     )
 }

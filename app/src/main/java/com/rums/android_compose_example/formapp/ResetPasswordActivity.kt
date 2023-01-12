@@ -6,10 +6,10 @@ import android.text.TextUtils
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
 import com.rums.android_compose_example.utils.toast
@@ -25,7 +25,7 @@ class ResetPasswordActivity : ComponentActivity() {
         setContent {
             AndroidcomposeexampleTheme {
                 Surface(
-                    modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxWidth(), color = Color.White
                 ) {
                     ResetPasswordScreen(onBackArrowPressed = { super.onBackPressed() },
                         onResetButtonClicked = { currentPassword, newPassword, confirmNewPassword ->
