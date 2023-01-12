@@ -3,6 +3,7 @@ package com.rums.android_compose_example.formapp
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -17,12 +18,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.toColorInt
+import com.rums.android_compose_example.R
 
 @Composable
 fun ResetPasswordScreen(
@@ -31,36 +34,40 @@ fun ResetPasswordScreen(
 ) {
     var currentPassword by rememberSaveable { mutableStateOf("") }
     var currentPasswordVisible by rememberSaveable { mutableStateOf(false) }
+    var isErrorCurrentPassword by rememberSaveable { mutableStateOf(false) }
 
     var newPassword by rememberSaveable { mutableStateOf("") }
     var newPasswordVisible by rememberSaveable { mutableStateOf(false) }
+    var isErrorNewPassword by rememberSaveable { mutableStateOf(false) }
 
     var confirmNewPassword by rememberSaveable { mutableStateOf("") }
     var confirmNewPasswordVisible by rememberSaveable { mutableStateOf(false) }
+    var isErrorConfirmNewPassword by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(topBar = {
         TopAppBar(title = {
-            Text(text = "Reset Password")
-        },
-            navigationIcon = {
-                IconButton(onClick = onBackArrowPressed) {
-                    Icon(Icons.Filled.ArrowBack, "")
-                }
-            },
-            backgroundColor = Color("#0000FF".toColorInt()),
-            contentColor = Color.White,
+            Text(text = stringResource(R.string.reset_password))
+        }, navigationIcon = {
+            IconButton(onClick = onBackArrowPressed) {
+                Icon(Icons.Filled.ArrowBack, "")
+            }
+        }, backgroundColor = Color.White,
+//            contentColor = Color.White,
             elevation = 12.dp
         )
     }, content = { padding ->
         Column(
             modifier = Modifier.padding(padding)
         ) {
-            MyTextField(currentPassword,
-                currentPasswordVisible,
-                placeholder = "Type current password here",
-                label = "Enter current password",
+            MyTextField(value = currentPassword,
+                isError = isErrorCurrentPassword,
+                errorMessage = stringResource(R.string.enter_current_password),
+                valueVisibility = currentPasswordVisible,
+                placeholder = stringResource(R.string.current_password),
+                label = stringResource(R.string.current_password),
                 onValueChange = {
                     currentPassword = it
+                    isErrorCurrentPassword = false
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
@@ -74,12 +81,16 @@ fun ResetPasswordScreen(
                     }
                 })
 
-            MyTextField(newPassword,
-                newPasswordVisible,
-                placeholder = "Type new password here",
-                label = "Enter new password",
+
+            MyTextField(value = newPassword,
+                isError = isErrorNewPassword,
+                errorMessage = stringResource(R.string.enter_new_password),
+                valueVisibility = newPasswordVisible,
+                placeholder = stringResource(R.string.new_password),
+                label = stringResource(R.string.new_password),
                 onValueChange = {
                     newPassword = it
+                    isErrorNewPassword = false
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
@@ -93,12 +104,15 @@ fun ResetPasswordScreen(
                     }
                 })
 
-            MyTextField(confirmNewPassword,
-                confirmNewPasswordVisible,
-                placeholder = "Type confirm new password here",
-                label = "Enter confirm new password",
+            MyTextField(value = confirmNewPassword,
+                isError = isErrorConfirmNewPassword,
+                errorMessage = stringResource(R.string.enter_valid_confirm_password),
+                valueVisibility = confirmNewPasswordVisible,
+                placeholder = stringResource(R.string.confirm_password),
+                label = stringResource(R.string.confirm_password),
                 onValueChange = {
                     confirmNewPassword = it
+                    isErrorConfirmNewPassword = false
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
@@ -115,29 +129,30 @@ fun ResetPasswordScreen(
                 })
 
             Button(modifier = Modifier.padding(8.dp), onClick = {
-                onResetButtonClicked(currentPassword, newPassword, confirmNewPassword)
+
+                if (currentPassword.isEmpty()) {
+                    isErrorCurrentPassword = true
+                } else if (newPassword.isEmpty()) {
+                    isErrorNewPassword = true
+                } else if (confirmNewPassword.isEmpty()) {
+                    isErrorConfirmNewPassword = true
+                } else {
+                    onResetButtonClicked(currentPassword, newPassword, confirmNewPassword)
+                }
+
             }) {
-                Text(text = "Reset password")
+                Text(text = stringResource(R.string.reset_password))
             }
         }
     })
-
-
-}
-
-fun getPasswordToggleIcon(isVisible: Boolean): ImageVector {
-    return if (isVisible) Icons.Filled.Visibility
-    else Icons.Filled.VisibilityOff
-}
-
-fun getPasswordToggleDescription(isVisible: Boolean): String {
-    return if (isVisible) "Hide password" else "Show password"
 }
 
 @Composable
 private fun MyTextField(
     value: String,
     valueVisibility: Boolean,
+    isError: Boolean,
+    errorMessage: String,
     placeholder: String,
     label: String,
     onValueChange: (String) -> Unit,
@@ -156,5 +171,28 @@ private fun MyTextField(
         modifier = Modifier
             .fillMaxWidth()
             .padding(4.dp),
+        shape = RoundedCornerShape(10.dp),
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = colorResource(R.color.colorGrayLightAlphaAlpha),
+            focusedIndicatorColor = Color.Transparent, //hide the bottom indicator line
+            unfocusedIndicatorColor = Color.Transparent //hide the bottom indicator line
+        )
     )
+    if (isError) {
+        Text(
+            text = errorMessage,
+            color = MaterialTheme.colors.error,
+            style = MaterialTheme.typography.caption,
+            modifier = Modifier.padding(start = 16.dp)
+        )
+    }
+}
+
+fun getPasswordToggleIcon(isVisible: Boolean): ImageVector {
+    return if (isVisible) Icons.Filled.Visibility
+    else Icons.Filled.VisibilityOff
+}
+
+fun getPasswordToggleDescription(isVisible: Boolean): String {
+    return if (isVisible) "Hide password" else "Show password"
 }
