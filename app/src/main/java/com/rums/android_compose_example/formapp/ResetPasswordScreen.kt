@@ -22,6 +22,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.toColorInt
 
 @Composable
 fun ResetPasswordScreen(
@@ -40,11 +41,15 @@ fun ResetPasswordScreen(
     Scaffold(topBar = {
         TopAppBar(title = {
             Text(text = "Reset Password")
-        }, navigationIcon = {
-            IconButton(onClick = onBackArrowPressed) {
-                Icon(Icons.Filled.ArrowBack, "")
-            }
-        }, backgroundColor = Color.Blue, contentColor = Color.White, elevation = 12.dp
+        },
+            navigationIcon = {
+                IconButton(onClick = onBackArrowPressed) {
+                    Icon(Icons.Filled.ArrowBack, "")
+                }
+            },
+            backgroundColor = Color("#0000FF".toColorInt()),
+            contentColor = Color.White,
+            elevation = 12.dp
         )
     }, content = { padding ->
         Column(
