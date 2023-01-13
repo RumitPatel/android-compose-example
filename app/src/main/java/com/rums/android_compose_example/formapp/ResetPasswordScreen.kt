@@ -53,7 +53,10 @@ fun ResetPasswordScreen(
 
     Scaffold(topBar = {
         TopAppBar(title = {
-            Text(text = stringResource(R.string.reset_password))
+            Text(
+                fontFamily = jost_medium,
+                text = stringResource(R.string.reset_password)
+            )
         }, navigationIcon = {
             IconButton(onClick = onBackArrowPressed) {
                 Icon(Icons.Filled.ArrowBack, "")
