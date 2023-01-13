@@ -1,8 +1,7 @@
 package com.rums.android_compose_example.formapp
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -15,16 +14,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.rums.android_compose_example.R
 
 @Composable
@@ -57,8 +62,33 @@ fun ResetPasswordScreen(
         )
     }, content = { padding ->
         Column(
-            modifier = Modifier.padding(padding)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Image(
+                painterResource(id = R.drawable.ic_reset_password),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(80.dp)
+                    .padding(8.dp),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = stringResource(R.string.reset_password),
+                fontWeight = FontWeight.Bold,
+                fontSize = 28.sp
+            )
+            Text(
+                modifier = Modifier.padding(16.dp),
+                textAlign = TextAlign.Center,
+                text = stringResource(R.string.if_you_change_password_your_current_new_password_here_otherwise_leave),
+                fontSize = 18.sp
+            )
+
             MyTextField(value = currentPassword,
                 isError = isErrorCurrentPassword,
                 errorMessage = stringResource(R.string.enter_current_password),
@@ -128,8 +158,9 @@ fun ResetPasswordScreen(
                     }
                 })
 
-            Button(modifier = Modifier.padding(8.dp), onClick = {
-
+            Button(modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp), onClick = {
                 if (currentPassword.isEmpty()) {
                     isErrorCurrentPassword = true
                 } else if (newPassword.isEmpty()) {
@@ -183,7 +214,9 @@ private fun MyTextField(
             text = errorMessage,
             color = MaterialTheme.colors.error,
             style = MaterialTheme.typography.caption,
-            modifier = Modifier.padding(start = 16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp),
         )
     }
 }
