@@ -31,6 +31,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rums.android_compose_example.R
+import com.rums.android_compose_example.utils.jost_bold
+import com.rums.android_compose_example.utils.jost_medium
 
 @Composable
 fun ResetPasswordScreen(
@@ -80,13 +82,15 @@ fun ResetPasswordScreen(
                 modifier = Modifier.padding(8.dp),
                 text = stringResource(R.string.reset_password),
                 fontWeight = FontWeight.Bold,
-                fontSize = 28.sp
+                fontSize = 28.sp,
+                fontFamily = jost_bold
             )
             Text(
                 modifier = Modifier.padding(16.dp),
                 textAlign = TextAlign.Center,
                 text = stringResource(R.string.if_you_change_password_your_current_new_password_here_otherwise_leave),
-                fontSize = 18.sp
+                fontSize = 18.sp,
+                fontFamily = jost_medium
             )
 
             MyTextField(value = currentPassword,
@@ -192,8 +196,8 @@ private fun MyTextField(
 ) {
     TextField(
         value = value,
-        placeholder = { Text(placeholder) },
-        label = { Text(label) },
+        placeholder = { Text(placeholder, fontFamily = jost_medium) },
+        label = { Text(label, fontFamily = jost_medium) },
         onValueChange = onValueChange,
         singleLine = true,
         keyboardOptions = keyboardOptions,
