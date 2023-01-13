@@ -128,8 +128,9 @@ fun ResetPasswordScreen(
                     }
                 })
 
-            Button(modifier = Modifier.padding(8.dp), onClick = {
-
+            Button(modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp), onClick = {
                 if (currentPassword.isEmpty()) {
                     isErrorCurrentPassword = true
                 } else if (newPassword.isEmpty()) {
@@ -159,8 +160,7 @@ private fun MyTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     trailingIcon: @Composable (() -> Unit)? = null,
 ) {
-    TextField(
-        value = value,
+    TextField(value = value,
         placeholder = { Text(placeholder) },
         label = { Text(label) },
         onValueChange = onValueChange,
