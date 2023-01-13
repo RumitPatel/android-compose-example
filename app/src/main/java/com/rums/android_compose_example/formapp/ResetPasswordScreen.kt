@@ -66,7 +66,7 @@ fun ResetPasswordScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding),
+                .padding(16.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -79,14 +79,14 @@ fun ResetPasswordScreen(
                 contentScale = ContentScale.Crop
             )
             Text(
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier.padding(2.dp),
                 text = stringResource(R.string.reset_password),
                 fontWeight = FontWeight.Bold,
                 fontSize = 28.sp,
                 fontFamily = jost_bold
             )
             Text(
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier.padding(12.dp),
                 textAlign = TextAlign.Center,
                 text = stringResource(R.string.if_you_change_password_your_current_new_password_here_otherwise_leave),
                 fontSize = 18.sp,
