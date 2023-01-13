@@ -115,7 +115,6 @@ fun ResetPasswordScreen(
                     }
                 })
 
-
             MyTextField(value = newPassword,
                 isError = isErrorNewPassword,
                 errorMessage = stringResource(R.string.enter_new_password),
