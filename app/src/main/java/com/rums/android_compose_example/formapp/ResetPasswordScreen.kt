@@ -1,8 +1,6 @@
 package com.rums.android_compose_example.formapp
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -15,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -57,7 +56,11 @@ fun ResetPasswordScreen(
         )
     }, content = { padding ->
         Column(
-            modifier = Modifier.padding(padding)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             MyTextField(value = currentPassword,
                 isError = isErrorCurrentPassword,
@@ -130,7 +133,7 @@ fun ResetPasswordScreen(
 
             Button(modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp), onClick = {
+                .padding(12.dp), onClick = {
                 if (currentPassword.isEmpty()) {
                     isErrorCurrentPassword = true
                 } else if (newPassword.isEmpty()) {
@@ -160,7 +163,8 @@ private fun MyTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     trailingIcon: @Composable (() -> Unit)? = null,
 ) {
-    TextField(value = value,
+    TextField(
+        value = value,
         placeholder = { Text(placeholder) },
         label = { Text(label) },
         onValueChange = onValueChange,
@@ -183,7 +187,9 @@ private fun MyTextField(
             text = errorMessage,
             color = MaterialTheme.colors.error,
             style = MaterialTheme.typography.caption,
-            modifier = Modifier.padding(start = 16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp),
         )
     }
 }
