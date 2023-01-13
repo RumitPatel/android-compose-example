@@ -13,4 +13,5 @@
     <string name="enter_valid_confirm_password">Enter valid confirm password</string>
     <string name="password_mismatch">Password and confirm password mismatch</string>
     <string name="current_passsword_change_password_not_same">Current password and change password cannot be same</string>
+    <string name="if_you_change_password_your_current_new_password_here_otherwise_leave">If you\'d like to change your password, \nenter your current password and new password here. Otherwise, leave them all blank.</string>
 </resources>
