@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.rums.android_compose_example.R
 import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
 import com.rums.android_compose_example.utils.toast
 
@@ -38,8 +39,10 @@ class ResetPasswordActivity : ComponentActivity() {
     private fun resetPassword(
         currentPassword: String?, newPassword: String?, confirmNewPassword: String?
     ) {
-        if (newPassword != confirmNewPassword) {
-            toast("New password and confirm password not match")
+        if (!newPassword.equals(confirmNewPassword, true)) {
+            toast(getString(R.string.password_mismatch))
+        } else if (currentPassword.equals(newPassword, true)) {
+            toast(getString(R.string.current_passsword_change_password_not_same))
         } else {
             toast("Going to reset the password with \ncurrentPassword = $currentPassword\nnewPassword = $newPassword\nconfirmNewPassword = $confirmNewPassword")
         }

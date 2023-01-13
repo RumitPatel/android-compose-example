@@ -11,6 +11,6 @@
     <string name="enter_current_password">Enter current password</string>
     <string name="enter_new_password">Enter new password</string>
     <string name="enter_valid_confirm_password">Enter valid confirm password</string>
-
+    <string name="password_mismatch">Password and confirm password mismatch</string>
     <string name="current_passsword_change_password_not_same">Current password and change password cannot be same</string>
 </resources>
