@@ -53,7 +53,10 @@ fun ResetPasswordScreen(
 
     Scaffold(topBar = {
         TopAppBar(title = {
-            Text(text = stringResource(R.string.reset_password))
+            Text(
+                fontFamily = jost_medium,
+                text = stringResource(R.string.reset_password)
+            )
         }, navigationIcon = {
             IconButton(onClick = onBackArrowPressed) {
                 Icon(Icons.Filled.ArrowBack, "")
@@ -67,7 +70,6 @@ fun ResetPasswordScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
@@ -163,19 +165,31 @@ fun ResetPasswordScreen(
 
             Button(modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp), onClick = {
-                if (currentPassword.isEmpty()) {
-                    isErrorCurrentPassword = true
-                } else if (newPassword.isEmpty()) {
-                    isErrorNewPassword = true
-                } else if (confirmNewPassword.isEmpty()) {
-                    isErrorConfirmNewPassword = true
-                } else {
-                    onResetButtonClicked(currentPassword, newPassword, confirmNewPassword)
-                }
+                .padding(8.dp)
+                .height(52.dp),
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = colorResource(R.color.colorPrimary)
+                ),
+                onClick = {
+                    if (currentPassword.isEmpty()) {
+                        isErrorCurrentPassword = true
+                    } else if (newPassword.isEmpty()) {
+                        isErrorNewPassword = true
+                    } else if (confirmNewPassword.isEmpty()) {
+                        isErrorConfirmNewPassword = true
+                    } else {
+                        onResetButtonClicked(currentPassword, newPassword, confirmNewPassword)
+                    }
 
-            }) {
-                Text(text = stringResource(R.string.reset_password))
+                }) {
+                Text(
+                    text = stringResource(R.string.reset_password).uppercase(),
+                    fontSize = 16.sp,
+                    fontFamily = jost_medium,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
             }
         }
     })

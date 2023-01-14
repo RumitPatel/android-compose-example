@@ -29,7 +29,9 @@
         </activity>
 
         <activity android:name=".demo_design.MainActivity" />
-        <activity android:name=".formapp.ResetPasswordActivity" />
+        <activity
+            android:name=".formapp.ResetPasswordActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
