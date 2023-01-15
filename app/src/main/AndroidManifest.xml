@@ -30,7 +30,7 @@
 
         <activity android:name=".demo_design.MainActivity" />
         <activity
-            android:name=".formapp.ResetPasswordActivity"
+            android:name=".reset_pasword_form.ResetPasswordActivity"
             android:windowSoftInputMode="adjustPan" />
     </application>
 
