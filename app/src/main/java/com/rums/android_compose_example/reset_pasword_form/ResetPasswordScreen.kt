@@ -28,11 +28,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rums.android_compose_example.R
-import com.rums.android_compose_example.utils.jost_medium
+import com.rums.android_compose_example.ui.common_views.MyPasswordTextField
+import com.rums.android_compose_example.ui.common_views.MyText
 
 @Composable
 fun ResetPasswordScreen(
@@ -90,7 +90,7 @@ fun ResetPasswordScreen(
                 fontSize = 18.sp,
             )
 
-            MyTextField(value = currentPassword,
+            MyPasswordTextField(value = currentPassword,
                 isError = isErrorCurrentPassword,
                 errorMessage = stringResource(R.string.enter_current_password),
                 valueVisibility = currentPasswordVisible,
@@ -112,7 +112,7 @@ fun ResetPasswordScreen(
                     }
                 })
 
-            MyTextField(value = newPassword,
+            MyPasswordTextField(value = newPassword,
                 isError = isErrorNewPassword,
                 errorMessage = stringResource(R.string.enter_new_password),
                 valueVisibility = newPasswordVisible,
@@ -134,7 +134,7 @@ fun ResetPasswordScreen(
                     }
                 })
 
-            MyTextField(value = confirmNewPassword,
+            MyPasswordTextField(value = confirmNewPassword,
                 isError = isErrorConfirmNewPassword,
                 errorMessage = stringResource(R.string.enter_valid_confirm_password),
                 valueVisibility = confirmNewPasswordVisible,
@@ -189,66 +189,7 @@ fun ResetPasswordScreen(
     })
 }
 
-@Composable
-private fun MyTextField(
-    value: String,
-    valueVisibility: Boolean,
-    isError: Boolean,
-    errorMessage: String,
-    placeholder: String,
-    label: String,
-    onValueChange: (String) -> Unit,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    trailingIcon: @Composable (() -> Unit)? = null,
-) {
-    TextField(value = value,
-        placeholder = { MyText(text = placeholder) },
-        label = { MyText(text = label) },
-        onValueChange = onValueChange,
-        singleLine = true,
-        keyboardOptions = keyboardOptions,
-        visualTransformation = if (valueVisibility) VisualTransformation.None else PasswordVisualTransformation(),
-        trailingIcon = trailingIcon,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(4.dp),
-        shape = RoundedCornerShape(10.dp),
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = colorResource(R.color.colorGrayLightAlphaAlpha),
-            focusedIndicatorColor = Color.Transparent, //hide the bottom indicator line
-            unfocusedIndicatorColor = Color.Transparent //hide the bottom indicator line
-        )
-    )
-    if (isError) {
-        MyText(
-            text = errorMessage,
-            color = MaterialTheme.colors.error,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp)
-        )
-    }
-}
 
-@Composable
-private fun MyText(
-    modifier: Modifier = Modifier,
-    text: String,
-    color: Color = Color.Unspecified,
-    fontWeight: FontWeight? = null,
-    fontSize: TextUnit = TextUnit.Unspecified,
-    textAlign: TextAlign? = null
-) {
-    Text(
-        modifier = modifier,
-        text = text,
-        fontFamily = jost_medium,
-        color = color,
-        fontWeight = fontWeight,
-        fontSize = fontSize,
-        textAlign = textAlign
-    )
-}
 
 fun getPasswordToggleIcon(isVisible: Boolean): ImageVector {
     return if (isVisible) Icons.Filled.Visibility
