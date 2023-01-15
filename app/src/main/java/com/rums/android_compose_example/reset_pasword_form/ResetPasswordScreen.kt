@@ -54,8 +54,7 @@ fun ResetPasswordScreen(
     Scaffold(topBar = {
         TopAppBar(title = {
             Text(
-                fontFamily = jost_medium,
-                text = stringResource(R.string.reset_password)
+                fontFamily = jost_medium, text = stringResource(R.string.reset_password)
             )
         }, navigationIcon = {
             IconButton(onClick = onBackArrowPressed) {
@@ -207,8 +206,7 @@ private fun MyTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     trailingIcon: @Composable (() -> Unit)? = null,
 ) {
-    TextField(
-        value = value,
+    TextField(value = value,
         placeholder = { Text(placeholder, fontFamily = jost_medium) },
         label = { Text(label, fontFamily = jost_medium) },
         onValueChange = onValueChange,
@@ -227,15 +225,23 @@ private fun MyTextField(
         )
     )
     if (isError) {
-        Text(
+        MyText(
             text = errorMessage,
             color = MaterialTheme.colors.error,
-            style = MaterialTheme.typography.caption,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 16.dp),
+                .padding(start = 16.dp)
         )
     }
+}
+
+@Composable
+private fun MyText(
+    modifier: Modifier = Modifier, text: String?, color: Color
+) {
+    Text(
+        modifier = modifier, text = text!!, fontFamily = jost_medium, color = color
+    )
 }
 
 fun getPasswordToggleIcon(isVisible: Boolean): ImageVector {
