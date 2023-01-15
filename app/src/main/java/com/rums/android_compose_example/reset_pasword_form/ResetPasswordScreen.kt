@@ -1,4 +1,4 @@
-package com.rums.android_compose_example.formapp
+package com.rums.android_compose_example.reset_pasword_form
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
