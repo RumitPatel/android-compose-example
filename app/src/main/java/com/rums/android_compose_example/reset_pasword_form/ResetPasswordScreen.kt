@@ -28,10 +28,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rums.android_compose_example.R
-import com.rums.android_compose_example.utils.jost_bold
 import com.rums.android_compose_example.utils.jost_medium
 
 @Composable
@@ -53,9 +53,7 @@ fun ResetPasswordScreen(
 
     Scaffold(topBar = {
         TopAppBar(title = {
-            Text(
-                fontFamily = jost_medium, text = stringResource(R.string.reset_password)
-            )
+            MyText(text = stringResource(R.string.reset_password))
         }, navigationIcon = {
             IconButton(onClick = onBackArrowPressed) {
                 Icon(Icons.Filled.ArrowBack, "")
@@ -79,19 +77,17 @@ fun ResetPasswordScreen(
                     .padding(8.dp),
                 contentScale = ContentScale.Crop
             )
-            Text(
+            MyText(
                 modifier = Modifier.padding(2.dp),
                 text = stringResource(R.string.reset_password),
                 fontWeight = FontWeight.Bold,
-                fontSize = 28.sp,
-                fontFamily = jost_bold
+                fontSize = 28.sp
             )
-            Text(
+            MyText(
                 modifier = Modifier.padding(12.dp),
                 textAlign = TextAlign.Center,
                 text = stringResource(R.string.if_you_change_password_your_current_new_password_here_otherwise_leave),
                 fontSize = 18.sp,
-                fontFamily = jost_medium
             )
 
             MyTextField(value = currentPassword,
@@ -182,10 +178,9 @@ fun ResetPasswordScreen(
                     }
 
                 }) {
-                Text(
+                MyText(
                     text = stringResource(R.string.reset_password).uppercase(),
                     fontSize = 16.sp,
-                    fontFamily = jost_medium,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
                 )
@@ -207,8 +202,8 @@ private fun MyTextField(
     trailingIcon: @Composable (() -> Unit)? = null,
 ) {
     TextField(value = value,
-        placeholder = { Text(placeholder, fontFamily = jost_medium) },
-        label = { Text(label, fontFamily = jost_medium) },
+        placeholder = { MyText(text = placeholder) },
+        label = { MyText(text = label) },
         onValueChange = onValueChange,
         singleLine = true,
         keyboardOptions = keyboardOptions,
@@ -237,10 +232,21 @@ private fun MyTextField(
 
 @Composable
 private fun MyText(
-    modifier: Modifier = Modifier, text: String?, color: Color
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = Color.Unspecified,
+    fontWeight: FontWeight? = null,
+    fontSize: TextUnit = TextUnit.Unspecified,
+    textAlign: TextAlign? = null
 ) {
     Text(
-        modifier = modifier, text = text!!, fontFamily = jost_medium, color = color
+        modifier = modifier,
+        text = text,
+        fontFamily = jost_medium,
+        color = color,
+        fontWeight = fontWeight,
+        fontSize = fontSize,
+        textAlign = textAlign
     )
 }
 
