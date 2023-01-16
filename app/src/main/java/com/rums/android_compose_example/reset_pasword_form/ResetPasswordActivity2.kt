@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.rums.android_compose_example.R
-import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
+import com.rums.android_compose_example.ui.theme.AndroidComposeExampleTheme
 import com.rums.android_compose_example.utils.toast
 
 class ResetPasswordActivity : ComponentActivity() {
@@ -23,7 +23,7 @@ class ResetPasswordActivity : ComponentActivity() {
         mContext = this
 
         setContent {
-            AndroidcomposeexampleTheme {
+            AndroidComposeExampleTheme {
                 Surface(
                     modifier = Modifier.fillMaxWidth(), color = Color.White
                 ) {
@@ -52,7 +52,7 @@ class ResetPasswordActivity : ComponentActivity() {
 @Preview
 @Composable
 fun DefaultPreview() {
-    AndroidcomposeexampleTheme {
+    AndroidComposeExampleTheme {
         ResetPasswordScreen()
     }
 }

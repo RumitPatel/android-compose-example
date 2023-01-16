@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.rums.android_compose_example.reset_pasword_form.ResetPasswordActivity
-import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
+import com.rums.android_compose_example.ui.theme.AndroidComposeExampleTheme
 
 class WellnessAppActivity : ComponentActivity() {
 
@@ -28,7 +28,7 @@ class WellnessAppActivity : ComponentActivity() {
         initObserver()
 
         setContent {
-            AndroidcomposeexampleTheme {
+            AndroidComposeExampleTheme {
                 Surface(
                     modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.background
                 ) {
@@ -62,7 +62,7 @@ class WellnessAppActivity : ComponentActivity() {
 @Preview
 @Composable
 fun DefaultPreview() {
-    AndroidcomposeexampleTheme {
+    AndroidComposeExampleTheme {
         WellnessScreen()
     }
 }
