@@ -18,7 +18,7 @@ import com.rums.android_compose_example.utils.toast
 class ResetPasswordActivity : ComponentActivity() {
 
     private lateinit var mContext: Context
-    private val myLive = MutableLiveData<Boolean>()
+    private val showLoaderStatus = MutableLiveData<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class ResetPasswordActivity : ComponentActivity() {
                         onResetButtonClicked = { currentPassword, newPassword, confirmNewPassword ->
                             resetPassword(currentPassword, newPassword, confirmNewPassword)
                         },
-                        myLive
+                        showLoaderStatus
                     )
                 }
             }
@@ -48,7 +48,7 @@ class ResetPasswordActivity : ComponentActivity() {
         } else if (currentPassword.equals(newPassword, true)) {
             toast(getString(R.string.current_passsword_change_password_not_same))
         } else {
-            myLive.postValue(true)
+            showLoaderStatus.postValue(true)
             toast("Going to reset the password with \ncurrentPassword = $currentPassword\nnewPassword = $newPassword\nconfirmNewPassword = $confirmNewPassword")
         }
     }
@@ -58,6 +58,6 @@ class ResetPasswordActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     AndroidComposeExampleTheme {
-//        ResetPasswordScreen()
+        ResetPasswordScreen()
     }
 }
