@@ -21,9 +21,6 @@ import androidx.compose.ui.unit.dp
 import com.rums.android_compose_example.R
 import com.rums.android_compose_example.utils.jost_medium
 
-class CommonViews {
-}
-
 @Composable
 fun MyPasswordTextField(
     value: String,
@@ -36,7 +33,8 @@ fun MyPasswordTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     trailingIcon: @Composable (() -> Unit)? = null,
 ) {
-    TextField(value = value,
+    TextField(
+        value = value,
         placeholder = { MyText(text = placeholder) },
         label = { MyText(text = label) },
         onValueChange = onValueChange,

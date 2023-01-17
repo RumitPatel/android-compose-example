@@ -2,7 +2,6 @@ package com.rums.android_compose_example.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val ColorPrimacy = Color(0xFF4285F4)
+val ColorPrimacyDark = Color(0xFF1638AA)
+val ColorAccent = Color(0xFF104271)

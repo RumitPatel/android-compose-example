@@ -31,14 +31,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rums.android_compose_example.R
-import com.rums.android_compose_example.ui.theme.AndroidcomposeexampleTheme
+import com.rums.android_compose_example.ui.theme.AndroidComposeExampleTheme
 import java.util.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AndroidcomposeexampleTheme {
+            AndroidComposeExampleTheme {
                 Surface(
                     modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.background
                 ) {
@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2, widthDp = 360, heightDp = 640)
 @Composable
 fun DefaultPreview() {
-    AndroidcomposeexampleTheme {
+    AndroidComposeExampleTheme {
         MainApp()
     }
 }
