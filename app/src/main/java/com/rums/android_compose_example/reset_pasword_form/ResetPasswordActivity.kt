@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.MutableLiveData
 import com.rums.android_compose_example.R
 import com.rums.android_compose_example.ui.theme.AndroidComposeExampleTheme
 import com.rums.android_compose_example.utils.toast
@@ -17,6 +18,7 @@ import com.rums.android_compose_example.utils.toast
 class ResetPasswordActivity : ComponentActivity() {
 
     private lateinit var mContext: Context
+    private val showLoaderStatus = MutableLiveData<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,9 @@ class ResetPasswordActivity : ComponentActivity() {
                     ResetPasswordScreen(onBackArrowPressed = { super.onBackPressed() },
                         onResetButtonClicked = { currentPassword, newPassword, confirmNewPassword ->
                             resetPassword(currentPassword, newPassword, confirmNewPassword)
-                        })
+                        },
+                        showLoaderStatus
+                    )
                 }
             }
         }
@@ -44,6 +48,7 @@ class ResetPasswordActivity : ComponentActivity() {
         } else if (currentPassword.equals(newPassword, true)) {
             toast(getString(R.string.current_passsword_change_password_not_same))
         } else {
+            showLoaderStatus.postValue(true)
             toast("Going to reset the password with \ncurrentPassword = $currentPassword\nnewPassword = $newPassword\nconfirmNewPassword = $confirmNewPassword")
         }
     }
