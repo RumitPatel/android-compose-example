@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -28,6 +29,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.LiveData
 import com.rums.android_compose_example.R
 import com.rums.android_compose_example.ui.common_views.MyPasswordTextField
 import com.rums.android_compose_example.ui.common_views.MyText
@@ -35,7 +37,8 @@ import com.rums.android_compose_example.ui.common_views.MyText
 @Composable
 fun ResetPasswordScreen(
     onBackArrowPressed: () -> Unit = {},
-    onResetButtonClicked: (currentPassword: String?, newPassword: String?, confirmNewPassword: String?) -> Unit = { _: String?, _: String?, _: String? -> }
+    onResetButtonClicked: (currentPassword: String?, newPassword: String?, confirmNewPassword: String?) -> Unit = { _: String?, _: String?, _: String? -> },
+    textLive: LiveData<Boolean>
 ) {
     var currentPassword by rememberSaveable { mutableStateOf("") }
     var currentPasswordVisible by rememberSaveable { mutableStateOf(false) }
@@ -48,6 +51,8 @@ fun ResetPasswordScreen(
     var confirmNewPassword by rememberSaveable { mutableStateOf("") }
     var confirmNewPasswordVisible by rememberSaveable { mutableStateOf(false) }
     var isErrorConfirmNewPassword by rememberSaveable { mutableStateOf(false) }
+
+    val showLoader: Boolean? by textLive.observeAsState()
 
     Scaffold(topBar = {
         TopAppBar(title = {
@@ -67,6 +72,9 @@ fun ResetPasswordScreen(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            if(showLoader == true) {
+                CircularProgressIndicator()
+            }
             Image(
                 painterResource(id = R.drawable.ic_reset_password),
                 contentDescription = null,
