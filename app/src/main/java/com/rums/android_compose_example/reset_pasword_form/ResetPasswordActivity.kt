@@ -2,6 +2,8 @@ package com.rums.android_compose_example.reset_pasword_form
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,7 +31,8 @@ class ResetPasswordActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxWidth(), color = Color.White
                 ) {
-                    ResetPasswordScreen(onBackArrowPressed = { super.onBackPressed() },
+                    ResetPasswordScreen(
+                        onBackArrowPressed = { super.onBackPressed() },
                         onResetButtonClicked = { currentPassword, newPassword, confirmNewPassword ->
                             resetPassword(currentPassword, newPassword, confirmNewPassword)
                         },
@@ -50,6 +53,12 @@ class ResetPasswordActivity : ComponentActivity() {
         } else {
             showLoaderStatus.postValue(true)
             toast("Going to reset the password with \ncurrentPassword = $currentPassword\nnewPassword = $newPassword\nconfirmNewPassword = $confirmNewPassword")
+
+            Handler(Looper.getMainLooper()).postDelayed(
+                {// This method will be executed once the timer is over
+                    showLoaderStatus.postValue(false)
+                }, 5000 // value in milliseconds
+            )
         }
     }
 }
