@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "android-compose-example"
-include ':app'
+rootProject.name = "Easy Permissions"
+include(":app")
