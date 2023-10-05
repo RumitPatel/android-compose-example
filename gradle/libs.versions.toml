@@ -1,0 +1,33 @@
+[versions]
+activity-compose = "1.7.2"
+androidx-junit = "1.1.5"
+espresso-core = "3.5.1"
+junit = "4.13.2"
+ktx = "1.12.0"
+lifecycle-runtime-ktx = "2.6.2"
+lifecycle-viewmodel-compose = "2.6.2"
+material = "1.5.2"
+material-icons-extended = "1.5.2"
+runtime-livedata = "1.5.1"
+ui = "1.5.1"
+ui-tooling-preview = "1.5.1"
+
+[libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
+androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+androidx-material = { module = "androidx.compose.material:material", version.ref = "material" }
+androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtime-livedata" }
+androidx-ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
+androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "ui" }
+androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "ui" }
+androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "ui" }
+junit = { module = "junit:junit", version.ref = "junit" }
+lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle-viewmodel-compose" }
+material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "material-icons-extended" }
+ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "ui-tooling-preview" }
+
+[plugins]
+
